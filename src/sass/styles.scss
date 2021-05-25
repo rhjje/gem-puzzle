@@ -9,6 +9,12 @@ body {
     background-color: #f1f3f7;
 }
 
+$border: rgb(118, 118, 118);
+$cell-bg: rgb(202, 199, 199);
+$field-bg: #8ed790;
+
+@import './header';
 @import 'gamefield';
-@import 'control-panel';
-@import 'modal';
+@import './settings';
+// @import 'control-panel';
+// @import 'modal';

@@ -1,1 +1,54 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"><link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon"><title>gem puzzle</title><link rel="icon" href="favicon.ico"><script defer="defer" src="ec8803cda91247c79464.js"></script><link href="styles.css" rel="stylesheet"></head><body></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <title>gem puzzle</title>
+<link rel="icon" href="favicon.ico"><script defer src="bundle.js"></script><link href="styles.css" rel="stylesheet"></head>
+
+<body>
+  <div class="header">
+    <h1 class="title">Gem puzzle</h1>
+    <div class="status-bar">
+      <div class="counter">Moves: 0</div>
+      <div class="timer">Time: 00:00</div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="settings">
+      <h2 class="subtitle">Settings</h2>
+      <div class="settings__text">
+        <label for="text">Text: </label>
+        <select name="text" id="text">
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="disabled">Disabled</option>
+        </select>
+      </div>
+      <div class="settings__sound">
+        <label for="sound">Sound: </label>
+        <select name="sound" id="sound">
+          <option value="on">On</option>
+          <option value="off">Off</option>
+        </select>
+      </div>
+      <div class="settings__image">
+        <label for="image">Image: </label>
+        <select name="image" id="image">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+      <button class="apply-settings">apply</button>
+
+    </div>
+  </div>
+  <div class="control-panel">
+    <button class="settings-button">Settings</button>
+    <button class="play">Play</button>
+  </div>
+</body>
+</html>

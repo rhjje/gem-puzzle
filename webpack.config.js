@@ -16,7 +16,7 @@ module.exports = () => {
       main: [path.resolve(__dirname, './src/js/main.js'), './src/sass/styles.scss']
     },
     output: {
-      filename: '[hash].js',
+      filename: 'bundle.js',
       path: path.resolve(__dirname, './dist'),
       assetModuleFilename: './assets/[name][ext]',
     },
@@ -27,7 +27,7 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
             }
           }
         },

@@ -1,0 +1,31 @@
+.settings {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 1;
+  animation-name: fade-in;
+  animation-duration: .4s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+ 
+.subtitle {
+  color: white;
+  font-size: 2.6rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.settings__text, .settings__sound, .settings__image {
+  color: white;
+}

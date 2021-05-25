@@ -10,6 +10,45 @@
 </head>
 
 <body>
-</body>
+  <div class="header">
+    <h1 class="title">Gem puzzle</h1>
+    <div class="status-bar">
+      <div class="counter">Moves: 0</div>
+      <div class="timer">Time: 00:00</div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="settings">
+      <h2 class="subtitle">Settings</h2>
+      <div class="settings__text">
+        <label for="text">Text: </label>
+        <select name="text" id="text">
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="disabled">Disabled</option>
+        </select>
+      </div>
+      <div class="settings__sound">
+        <label for="sound">Sound: </label>
+        <select name="sound" id="sound">
+          <option value="on">On</option>
+          <option value="off">Off</option>
+        </select>
+      </div>
+      <div class="settings__image">
+        <label for="image">Image: </label>
+        <select name="image" id="image">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+      <button class="apply-settings">apply</button>
 
+    </div>
+  </div>
+  <div class="control-panel">
+    <button class="settings-button">Settings</button>
+    <button class="play">Play</button>
+  </div>
+</body>
 </html>

@@ -1,7 +1,3 @@
-$border: rgb(118, 118, 118);
-$cell-bg: rgb(202, 199, 199);
-$field-bg: #8ed790;
-
 .field {
     width: 400px;
     height: 400px;
@@ -27,33 +23,6 @@ $field-bg: #8ed790;
     user-select: none;
     background-color: $cell-bg;
     overflow: hidden;
-}
-
-.count-panel {
-    display: flex;
-    width: 400px;
-    margin: 20px auto 0;
-    justify-content: space-between;
-}
-
-.counter {
-    width: 200px;
-    height: 40px;
-    font-size: 2.6rem;
-    background-color: rgb(111, 216, 216);
-    border: 1px solid $border;
-    border-radius: 5px;
-}
-
-.timer {
-    width: 200px;
-    height: 40px;
-    font-size: 2.6rem;
-    text-align: right;
-    background-color: rgb(196, 124, 42);
-    border: 1px solid $border;
-    border-radius: 5px;
-    margin-bottom: 5px;
 }
 
 .leaderboard {
