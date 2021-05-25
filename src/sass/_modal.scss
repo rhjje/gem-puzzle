@@ -1,0 +1,88 @@
+.info img {
+    height: 30px;
+    width: auto;
+    margin-right: 5px;
+    &:hover {
+        cursor: pointer;
+    }
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.info-modal {
+    width: 380px;
+    height: 400px;
+    background-color: whitesmoke;
+    position: absolute;
+    padding: 10px;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.info-modal p, .info-modal p b {
+    font-size: 1.2rem;
+    line-height: 130%; 
+}
+
+.info-modal p {
+    margin-bottom: 10px;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 365px;
+    top: 10px;
+}
+
+.close img {
+    width: 30px;
+    height: auto;
+    &:hover {
+        cursor: pointer;
+    }
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.contacts {
+    font-size: 1.2rem;
+    line-height: 140%;
+    margin-top: 20px;
+}
+
+.contacts-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.discord, .telegram, .mail {
+    height: 25px; 
+    display: flex;
+    align-items: center;
+}
+
+.discord img, .telegram img, .mail img {
+    width: 25px;
+    height: auto;
+    margin-right: 5px; 
+}
+
+.discord span, .telegram span, .mail span {
+    font-size: 1.2rem;
+}
+
+.discord {
+    width: 110px;
+}
+
+.telegram {
+    width: 70px;
+}
+
+.mail {
+    width: 165px;
+}

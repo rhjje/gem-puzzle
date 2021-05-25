@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f1f3f7;
+}
+
+@import 'gamefield';
+@import 'control-panel';
+@import 'modal';
