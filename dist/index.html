@@ -17,7 +17,7 @@
       <div class="timer">Time: 00:00</div>
     </div>
   </div>
-  <div class="field">
+  <div class="field" data-size="16">
     <div class="settings">
       <h2 class="subtitle">Settings</h2>
       <div class="settings__text">
@@ -42,13 +42,22 @@
           <option value="on">On</option>
         </select>
       </div>
+      <div class="settings__field-size">
+        <label for="field-size">Field size: </label>
+        <select name="field-size" id="field-size">
+          <option value="9">3x3</option>
+          <option value="16" selected>4x4</option>
+          <option value="25">5x5</option>
+          <option value="36">6x6</option>
+        </select>
+      </div>
       <button class="apply-settings">apply</button>
-
     </div>
+    <div class="end-of-game">Congratulations! You won!</div>
   </div>
   <div class="control-panel">
     <button class="settings-button">Settings</button>
-    <button class="play">Play</button>
+    <button class="play">New game</button>
   </div>
 </body>
 </html>

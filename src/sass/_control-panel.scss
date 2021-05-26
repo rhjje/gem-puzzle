@@ -3,103 +3,17 @@ $button-hover: #009CC2;
 $border: rgb(118, 118, 118);
 
 .control-panel {
-    display: flex;
-    justify-content: flex-end;
-    width: 400px;
-    margin: 10px auto 0;
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin: 10px auto 0;
 }
 
-.select, .select-text {
-    font-size: 2rem;
-    height: 30px;
-    transition: all .2s ease-in-out;
-    background-color: $button;
-    color: white;
-    border-radius: 5px;
-    margin-left: 5px;
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.select option, .select-text option {
-    font-size: 2rem;
-}
-
-.button-submit, .button-submit-text, .autocomplete, .leaderboard-button, .saved-button {
-    font-size: 2rem;
-    width: 55px;
-    height: 28px;
-    text-align: center;
-    border: 1px solid black;
-    user-select: none;
-    color: white;
-    background-color: $button;
-    border-color: $border;
-    border-radius: 5px;
-    &:hover {
-        cursor: pointer;
-        background-color: $button-hover;
-    }
-    &:active {
-        transform: scale(0.9);
-    }
-}
-
-.autocomplete {
-    width: 130px;
-    outline: none;
-}
-
-.sound {
-    width: 30px;
-    height: 30px;
-}
-.sound img {
-    height: 30px;
-    width: auto;
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.switch {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 30px;
-    font-size: 2rem;
-    border: 1px $border solid;
-    border-radius: 5px;
-    background-color: $button;
-    margin-left: 5px;
-    &:hover {
-        background-color: $button-hover;
-        cursor: pointer;
-    }
-}
-
-.switch-text {
-    font-size: 2rem;
-    padding-right: 5px;
-    color: white;
-}
-
-input[type=checkbox] {
-    width: 15px;
-    height: 15px;
+.settings-button, .play {
+  width: 190px;
+  height: 45px;
+  font-size: 2.4rem;
+  &:hover {
     cursor: pointer;
-}
-
-.results-panel {
-    width: 400px;
-    margin: 5px auto 0;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.leaderboard-button, .saved-button {
-    width: 120px;
-    margin-left: 5px;
+  }
 }

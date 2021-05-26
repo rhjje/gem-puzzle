@@ -1,4 +1,4 @@
-.settings {
+.settings, .end-of-game {
   display: none;
   width: 100%;
   height: 100%;
@@ -26,6 +26,6 @@
   text-align: center;
 }
 
-.settings__text, .settings__sound, .settings__image {
+.settings__text, .settings__sound, .settings__image, .settings__field-size {
   color: white;
 }

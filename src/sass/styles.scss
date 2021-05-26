@@ -1,12 +1,12 @@
 * {
-    padding: 0;
-    margin: 0;
-    font-size: 10px;
-    font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #f1f3f7;
+  background-image: url(../assets/images/background.png);
 }
 
 $border: rgb(118, 118, 118);
@@ -16,5 +16,5 @@ $field-bg: #8ed790;
 @import './header';
 @import 'gamefield';
 @import './settings';
-// @import 'control-panel';
+@import 'control-panel';
 // @import 'modal';

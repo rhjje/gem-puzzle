@@ -3,8 +3,12 @@
 export default class GemPuzzle {
   constructor() {
     this.field = document.querySelector('.field');
+    this.buttonPlay = document.querySelector('.play');
     this.counter = document.querySelector('.counter');
     this.timer = document.querySelector('.timer');
+    this.soundSettings = document.getElementById('sound');
+    this.fieldSizeSettings = document.getElementById('field-size');
+    this.endOfGame = document.querySelector('.end-of-game');
     this.sound = new Audio('./assets/sounds/move.wav');
     this.moveCounter = 0;
     this.fieldSize = 16;
@@ -25,7 +29,6 @@ export default class GemPuzzle {
       const cellSize = 400 / Math.sqrt(this.fieldSize);
       if (item !== 0) {
         const cell = document.createElement('div');
-        // cell.setAttribute('draggable', true);
         cell.classList.add('cell');
         cell.innerText = item;
         cell.style.width = `${400 / Math.sqrt(this.fieldSize)}px`;
@@ -41,6 +44,13 @@ export default class GemPuzzle {
     this.bindTriggers();
   }
 
+  clearField() {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => {
+      cell.remove();
+    });
+  }
+
   bindTriggers() {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell, i) => {
@@ -49,7 +59,7 @@ export default class GemPuzzle {
         const horizontDiff = Math.abs(this.left.slice(0, -2) - cell.style.left.slice(0, -2));
         const cellSize = 400 / Math.sqrt(this.fieldSize);
         if (Math.trunc(verticalDiff) + Math.trunc(horizontDiff) === Math.trunc(cellSize)) {
-          this.sound.play();
+          if (!this.soundOff) this.sound.play();
           this.moveCounter += 1;
           this.counter.innerHTML = `Moves: ${this.moveCounter}`;
           if (this.timerOff) {
@@ -76,7 +86,8 @@ export default class GemPuzzle {
     });
 
     if (count === cells.length) {
-      console.log('you win');
+      this.endOfGame.style.display = 'flex';
+      clearInterval(this.timerId);
     }
   }
 
@@ -92,5 +103,27 @@ export default class GemPuzzle {
 
   init() {
     this.createGameField();
+    this.fieldSizeSettings.addEventListener('change', () => {
+      this.fieldSize = +this.fieldSizeSettings.value;
+    });
+
+    this.buttonPlay.addEventListener('click', () => {
+      clearInterval(this.timerId);
+      this.endOfGame.style.display = 'none';
+      this.timer.innerText = 'Time: 00:00';
+      this.counter.innerText = 'Moves: 0';
+      this.moveCounter = 0;
+      this.timerOff = true;
+      this.clearField();
+      this.createGameField();
+    });
+
+    this.soundSettings.addEventListener('change', () => {
+      if (this.soundSettings.value === 'off') {
+        this.soundOff = true;
+      } else {
+        this.soundOff = false;
+      }
+    });
   }
 }
