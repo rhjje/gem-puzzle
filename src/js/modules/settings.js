@@ -4,6 +4,8 @@ import GemPuzzle from './gem-puzzle';
 export default class Settings extends GemPuzzle {
   constructor() {
     super();
+    this.settings = document.querySelector('.settings');
+    this.button = document.querySelector('.settings-button');
     this.field = document.querySelector('.field');
     this.text = document.getElementById('text');
     this.sound = document.getElementById('sound');
@@ -24,6 +26,16 @@ export default class Settings extends GemPuzzle {
   }
 
   init() {
+    this.button.addEventListener('click', (event) => {
+      if (event.target.outerText === 'Settings') {
+        this.button.innerHTML = 'Resume game';
+        this.settings.style.display = 'flex';
+      } else {
+        this.button.innerHTML = 'Settings';
+        this.settings.style.display = 'none';
+      }
+    });
+
     this.text.addEventListener('change', () => {
       this.field.setAttribute('data-text', `${this.text.value}`);
       this.changeText();
