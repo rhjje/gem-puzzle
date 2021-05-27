@@ -6,14 +6,14 @@ export default class GemPuzzle {
     this.buttonPlay = document.querySelector('.play');
     this.counter = document.querySelector('.counter');
     this.timer = document.querySelector('.timer');
-    this.soundSettings = document.getElementById('sound');
-    this.fieldSizeSettings = document.getElementById('field-size');
     this.endOfGame = document.querySelector('.end-of-game');
-    this.sound = new Audio('./assets/sounds/move.wav');
+    this.audio = new Audio('./assets/sounds/move.wav');
     this.moveCounter = 0;
+
     this.fieldSize = 16;
+    this.text = 'black';
+    this.image = 'off';
     this.timerOff = true;
-    this.soundOff = false;
   }
 
   shuffleGameField(size) {
@@ -35,6 +35,13 @@ export default class GemPuzzle {
         cell.style.height = `${400 / Math.sqrt(this.fieldSize)}px`;
         cell.style.left = `${left * cellSize}px`;
         cell.style.top = `${top * cellSize}px`;
+
+        if (this.text === 'disabled') {
+          cell.style.fontSize = '0rem';
+        } else {
+          cell.style.color = `${this.text}`;
+          cell.style.fontSize = '';
+        }
         this.field.append(cell);
       } else {
         this.left = `${left * cellSize}px`;
@@ -42,12 +49,36 @@ export default class GemPuzzle {
       }
     });
     this.bindTriggers();
+    if (this.image === 'on') this.setImage();
   }
 
   clearField() {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
       cell.remove();
+    });
+  }
+
+  getImageUrl() {
+    const randomImage = Math.floor(Math.random() * (150 - 1) + 1);
+    this.field.setAttribute('data-url', `url(assets/images/${randomImage}.jpg)`);
+  }
+
+  setImage() {
+    const cells = document.querySelectorAll('.cell');
+    const urlImg = this.field.getAttribute('data-url');
+    const fieldSize = cells.length + 1;
+
+    cells.forEach((_, i) => {
+      const background = `${urlImg} ${((+cells[i].innerText - 1) % (Math.sqrt(fieldSize)))
+        * (100 / (Math.sqrt(fieldSize) - 1))}% ${Math.trunc((+cells[i].innerText - 1) / (Math.sqrt(fieldSize)))
+        * (100 / (Math.sqrt(fieldSize) - 1))}%`;
+      if (this.field.getAttribute('data-image') === 'on') {
+        cells[i].style.background = background;
+        cells[i].style.backgroundSize = '400px';
+      } else {
+        cells[i].style.background = '';
+      }
     });
   }
 
@@ -59,7 +90,9 @@ export default class GemPuzzle {
         const horizontDiff = Math.abs(this.left.slice(0, -2) - cell.style.left.slice(0, -2));
         const cellSize = 400 / Math.sqrt(this.fieldSize);
         if (Math.trunc(verticalDiff) + Math.trunc(horizontDiff) === Math.trunc(cellSize)) {
-          if (!this.soundOff) this.sound.play();
+          if (this.field.getAttribute('data-sound') === 'on') {
+            this.audio.play();
+          }
           this.moveCounter += 1;
           this.counter.innerHTML = `Moves: ${this.moveCounter}`;
           if (this.timerOff) {
@@ -101,29 +134,28 @@ export default class GemPuzzle {
     }, 1000);
   }
 
+  setInitialState() {
+    clearInterval(this.timerId);
+    this.endOfGame.style.display = 'none';
+    this.timer.innerText = 'Time: 00:00';
+    this.counter.innerText = 'Moves: 0';
+    this.moveCounter = 0;
+    this.timerOff = true;
+
+    this.fieldSize = +this.field.getAttribute('data-size');
+    this.text = this.field.getAttribute('data-text');
+    this.image = this.field.getAttribute('data-image');
+
+    this.clearField();
+  }
+
   init() {
+    this.getImageUrl();
     this.createGameField();
-    this.fieldSizeSettings.addEventListener('change', () => {
-      this.fieldSize = +this.fieldSizeSettings.value;
-    });
 
     this.buttonPlay.addEventListener('click', () => {
-      clearInterval(this.timerId);
-      this.endOfGame.style.display = 'none';
-      this.timer.innerText = 'Time: 00:00';
-      this.counter.innerText = 'Moves: 0';
-      this.moveCounter = 0;
-      this.timerOff = true;
-      this.clearField();
+      this.setInitialState();
       this.createGameField();
-    });
-
-    this.soundSettings.addEventListener('change', () => {
-      if (this.soundSettings.value === 'off') {
-        this.soundOff = true;
-      } else {
-        this.soundOff = false;
-      }
     });
   }
 }
