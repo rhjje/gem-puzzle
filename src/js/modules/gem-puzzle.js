@@ -8,11 +8,12 @@ export default class GemPuzzle {
     this.timer = document.querySelector('.timer');
     this.endOfGame = document.querySelector('.end-of-game');
     this.audio = new Audio('./assets/sounds/move.wav');
-    this.moveCounter = 0;
 
     this.fieldSize = 16;
     this.text = 'black';
     this.image = 'off';
+
+    this.moveCounter = 0;
     this.timerOff = true;
   }
 
@@ -54,9 +55,7 @@ export default class GemPuzzle {
 
   clearField() {
     const cells = document.querySelectorAll('.cell');
-    cells.forEach((cell) => {
-      cell.remove();
-    });
+    cells.forEach((cell) => cell.remove());
   }
 
   getImageUrl() {
@@ -67,12 +66,11 @@ export default class GemPuzzle {
   setImage() {
     const cells = document.querySelectorAll('.cell');
     const urlImg = this.field.getAttribute('data-url');
-    const fieldSize = cells.length + 1;
 
     cells.forEach((_, i) => {
-      const background = `${urlImg} ${((+cells[i].innerText - 1) % (Math.sqrt(fieldSize)))
-        * (100 / (Math.sqrt(fieldSize) - 1))}% ${Math.trunc((+cells[i].innerText - 1) / (Math.sqrt(fieldSize)))
-        * (100 / (Math.sqrt(fieldSize) - 1))}%`;
+      const background = `${urlImg} ${((+cells[i].innerText - 1) % (Math.sqrt(this.fieldSize)))
+        * (100 / (Math.sqrt(this.fieldSize) - 1))}% ${Math.trunc((+cells[i].innerText - 1) / (Math.sqrt(this.fieldSize)))
+        * (100 / (Math.sqrt(this.fieldSize) - 1))}%`;
       if (this.field.getAttribute('data-image') === 'on') {
         cells[i].style.background = background;
         cells[i].style.backgroundSize = '400px';
@@ -113,7 +111,10 @@ export default class GemPuzzle {
     const cellSize = 400 / Math.sqrt(this.fieldSize);
     let count = 0;
     cells.forEach((cell) => {
-      if (`${Math.trunc(cell.style.left.slice(0, -2))}px` === `${((+cell.innerText - 1) % Math.sqrt(this.fieldSize)) * Math.trunc(cellSize)}px` && `${Math.trunc(cell.style.top.slice(0, -2))}px` === `${(Math.trunc((+cell.innerText - 1) / Math.sqrt(this.fieldSize))) * Math.trunc(cellSize)}px`) {
+      if (`${Math.trunc(cell.style.left.slice(0, -2))}px`
+      === `${((+cell.innerText - 1) % Math.sqrt(this.fieldSize)) * Math.trunc(cellSize)}px`
+      && `${Math.trunc(cell.style.top.slice(0, -2))}px`
+      === `${(Math.trunc((+cell.innerText - 1) / Math.sqrt(this.fieldSize))) * Math.trunc(cellSize)}px`) {
         count += 1;
       }
     });
@@ -146,6 +147,7 @@ export default class GemPuzzle {
     this.text = this.field.getAttribute('data-text');
     this.image = this.field.getAttribute('data-image');
 
+    this.getImageUrl();
     this.clearField();
   }
 

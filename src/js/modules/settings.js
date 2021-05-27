@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import GemPuzzle from './gem-puzzle';
 
 export default class Settings extends GemPuzzle {
