@@ -1,0 +1,71 @@
+.settings {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  padding-top: 30px;
+  width: 100%;
+  height: calc(100% - 30px);
+  position: absolute;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  z-index: 1;
+  animation-name: fade-in;
+  animation-duration: .4s;
+}
+
+@keyframes fade-in {
+  from {
+    background-color: rgba($color: #000000, $alpha: 0);
+  }
+  to {
+    background-color: rgba($color: #000000, $alpha: 0.8);
+  }
+}
+ 
+.subtitle {
+  color: white;
+  font-size: 3rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.settings__text, 
+.settings__sound, 
+.settings__image, 
+.settings__field-size {
+  width: 230px;
+  display: flex;
+  justify-content: space-between;
+  & label {
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+#text,
+#sound,
+#image,
+#field-size {
+  width: 105px;
+  font-size: 2rem;
+  text-align-last: center;
+  outline: none;
+  & option {
+    font-size: 2rem;
+    text-align: center;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.end-of-game {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  z-index: 1;
+  animation-name: fade-in;
+  animation-duration: .4s;
+}

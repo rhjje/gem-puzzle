@@ -4,7 +4,7 @@ const resumeGame = () => {
   button.addEventListener('click', (event) => {
     if (event.target.outerText === 'Settings') {
       button.innerHTML = 'Resume game';
-      settings.style.display = 'block';
+      settings.style.display = 'flex';
     } else {
       button.innerHTML = 'Settings';
       settings.style.display = 'none';

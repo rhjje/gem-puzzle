@@ -13,7 +13,7 @@ module.exports = () => {
   const config = {
     devtool: 'inline-source-map',
     entry: {
-      main: [path.resolve(__dirname, './src/js/main.js'), './src/sass/styles.scss']
+      main: [path.resolve(__dirname, './src/js/main.js'), './src/scss/styles.scss']
     },
     output: {
       filename: 'bundle.js',
