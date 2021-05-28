@@ -128,10 +128,12 @@ export default class GemPuzzle {
   setTimer() {
     let time = 0;
     this.timerId = setInterval(() => {
-      time += 1;
-      this.timer.innerHTML = `Time: 
-      ${Math.trunc(time / 60) < 10 ? `0${Math.trunc(time / 60)}`
+      if (!this.field.getAttribute('data-pause')) {
+        time += 1;
+        this.timer.innerHTML = `Time: 
+        ${Math.trunc(time / 60) < 10 ? `0${Math.trunc(time / 60)}`
     : Math.trunc(time / 60)}:${time % 60 < 10 ? `0${time % 60}` : time % 60}`;
+      }
     }, 1000);
   }
 

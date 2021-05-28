@@ -27,9 +27,11 @@ export default class Settings extends GemPuzzle {
   init() {
     this.button.addEventListener('click', (event) => {
       if (event.target.outerText === 'Settings') {
+        this.field.setAttribute('data-pause', true);
         this.button.innerHTML = 'Resume game';
         this.settings.style.display = 'flex';
       } else {
+        this.field.removeAttribute('data-pause');
         this.button.innerHTML = 'Settings';
         this.settings.style.display = 'none';
       }
