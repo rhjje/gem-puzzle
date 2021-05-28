@@ -19,6 +19,30 @@ export default class GemPuzzle {
 
   shuffleGameField(size) {
     const arr = [...Array(size).keys()].sort(() => Math.random() - 0.5);
+    arr.sort(() => Math.random() - 0.5);
+    const sqrt = Math.sqrt(size);
+    const temp = [];
+    for (let i = 0; i < arr.length; i += sqrt) {
+      temp.push(arr.slice(i, sqrt + i));
+    }
+    temp.map((item, i) => {
+      if (i % 2) {
+        return item.reverse();
+      }
+      return item;
+    });
+    const snakeArr = temp.flat();
+    let counter = 0;
+    for (let i = 0; i < snakeArr.length - 1; i += 1) {
+      if (snakeArr[i] !== 0) {
+        for (let j = i + 1; j < snakeArr.length; j += 1) {
+          if (snakeArr[i] > snakeArr[j] && snakeArr[j] !== 0) counter += 1;
+        }
+      }
+    }
+    if (counter % 2 === 0) {
+      [arr[0], arr[1]] = [arr[1], arr[0]];
+    }
     return arr;
   }
 
