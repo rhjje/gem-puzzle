@@ -41,7 +41,11 @@ export default class GemPuzzle {
       }
     }
     if (counter % 2 === 0) {
-      [arr[0], arr[1]] = [arr[1], arr[0]];
+      if (arr[0] !== 0 && arr[1] !== 0) {
+        [arr[0], arr[1]] = [arr[1], arr[0]];
+      } else {
+        [arr[arr.length - 1], arr[arr.length - 2]] = [arr[arr.length - 2], arr[arr.length - 1]];
+      }
     }
     return arr;
   }
