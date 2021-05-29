@@ -4,6 +4,7 @@ export default class GemPuzzle {
   constructor() {
     this.field = document.querySelector('.field');
     this.buttonPlay = document.querySelector('.play');
+    this.buttonSettings = document.querySelector('.settings-button');
     this.counter = document.querySelector('.counter');
     this.timer = document.querySelector('.timer');
     this.endOfGame = document.querySelector('.end-of-game');
@@ -19,7 +20,6 @@ export default class GemPuzzle {
 
   shuffleGameField(size) {
     const arr = [...Array(size).keys()].sort(() => Math.random() - 0.5);
-    arr.sort(() => Math.random() - 0.5);
     const sqrt = Math.sqrt(size);
     const temp = [];
     for (let i = 0; i < arr.length; i += sqrt) {
@@ -149,6 +149,7 @@ export default class GemPuzzle {
 
     if (count === cells.length) {
       this.endOfGame.style.display = 'flex';
+      this.buttonSettings.setAttribute('disabled', 'disabled');
       this.setRecord(this.moveCounter, this.timer.innerText.slice(6), this.fieldSize);
       clearInterval(this.timerId);
     }
@@ -199,6 +200,7 @@ export default class GemPuzzle {
     this.fieldSize = +this.field.getAttribute('data-size');
     this.text = this.field.getAttribute('data-text');
     this.image = this.field.getAttribute('data-image');
+    this.buttonSettings.removeAttribute('disabled');
 
     this.getImageUrl();
     this.clearField();

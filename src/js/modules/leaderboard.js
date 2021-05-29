@@ -3,7 +3,7 @@ export default class Leaderboard {
     this.button = document.querySelector('.popup-records__open');
     this.container = document.querySelector('.popup-records');
     this.settings = document.querySelector('.settings');
-    this.settingsButton = document.querySelector('.settings-button');
+    this.buttonSettings = document.querySelector('.settings-button');
     this.fieldSize = document.getElementById('field-size');
   }
 
@@ -41,7 +41,7 @@ export default class Leaderboard {
       event.preventDefault();
       this.container.style.display = 'none';
       this.settings.style.display = 'flex';
-      this.settingsButton.removeAttribute('disabled');
+      this.buttonSettings.removeAttribute('disabled');
     });
   }
 
@@ -49,7 +49,7 @@ export default class Leaderboard {
     this.button.addEventListener('click', () => {
       this.buildTable();
       this.settings.style.display = 'none';
-      this.settingsButton.setAttribute('disabled', 'disabled');
+      this.buttonSettings.setAttribute('disabled', 'disabled');
     });
   }
 }
