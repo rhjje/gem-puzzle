@@ -149,6 +149,7 @@ export default class GemPuzzle {
 
     if (count === cells.length) {
       this.endOfGame.style.display = 'flex';
+      this.setRecord(this.moveCounter, this.timer.innerText.slice(6), this.fieldSize);
       clearInterval(this.timerId);
     }
   }
@@ -163,6 +164,28 @@ export default class GemPuzzle {
     : Math.trunc(time / 60)}:${time % 60 < 10 ? `0${time % 60}` : time % 60}`;
       }
     }, 1000);
+  }
+
+  setRecord(moves, time, size) {
+    let data;
+    if (localStorage.getItem(`records${size}`)) {
+      data = JSON.parse(localStorage.getItem(`records${size}`));
+    } else {
+      data = [];
+    }
+
+    const now = new Date().toString();
+    const date = `${now.slice(8, 10)} ${now.slice(4, 7)} ${now.slice(11, 15)}`;
+
+    const currentResult = { moves, time, date };
+    data.push(currentResult);
+    data.sort((a, b) => (a.moves > b.moves ? 1 : -1));
+
+    if (data.length > 10) {
+      localStorage.setItem(`records${size}`, JSON.stringify(data.slice(0, 10)));
+    } else {
+      localStorage.setItem(`records${size}`, JSON.stringify(data));
+    }
   }
 
   setInitialState() {
