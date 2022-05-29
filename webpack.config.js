@@ -64,7 +64,7 @@ module.exports = () => {
       ]
     },
     devServer: {
-      contentBase: path.resolve(__dirname, './src/html/'),
+      static: path.resolve(__dirname, './src/html/'),
       port: 8000,
       historyApiFallback: true,
       hot: true
