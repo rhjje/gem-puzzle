@@ -9,7 +9,9 @@ export default class Leaderboard {
 
   buildTable() {
     this.container.innerHTML = '';
-    const data = JSON.parse(localStorage.getItem(`records${this.fieldSize.value}`));
+    const data = JSON.parse(
+      localStorage.getItem(`records${this.fieldSize.value}`),
+    );
     if (data) {
       let rows = '';
       data.forEach((item) => {
@@ -24,7 +26,9 @@ export default class Leaderboard {
       });
       const table = `
         <table class="records">
-        <caption class="records__caption">Best scores ${this.fieldSize.value === '9' ? '3x3' : '4x4'}</caption>
+        <caption class="records__caption">Best scores ${
+          this.fieldSize.value === '9' ? '3x3' : '4x4'
+        }</caption>
         <thead class="records__thead">
           <tr class="records__row">
             <th class="records__cell">Moves</th>
@@ -36,16 +40,20 @@ export default class Leaderboard {
       </table>`;
       this.container.innerHTML += table;
     } else {
-      this.container.innerHTML += '<div class="records__notice">No data yet (:</div>';
+      this.container.innerHTML +=
+        '<div class="records__notice">No data yet (:</div>';
     }
-    this.container.innerHTML += '<a href="#" class="popup-records__close">Back</a>';
+    this.container.innerHTML +=
+      '<a href="#" class="popup-records__close">Back</a>';
     this.container.style.display = 'flex';
-    document.querySelector('.popup-records__close').addEventListener('click', (event) => {
-      event.preventDefault();
-      this.container.style.display = 'none';
-      this.settings.style.display = 'flex';
-      this.buttonSettings.removeAttribute('disabled');
-    });
+    document
+      .querySelector('.popup-records__close')
+      .addEventListener('click', (event) => {
+        event.preventDefault();
+        this.container.style.display = 'none';
+        this.settings.style.display = 'flex';
+        this.buttonSettings.removeAttribute('disabled');
+      });
   }
 
   init() {

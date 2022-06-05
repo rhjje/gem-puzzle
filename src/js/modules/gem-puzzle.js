@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-
 export default class GemPuzzle {
   constructor() {
     this.field = document.querySelector('.field');
@@ -44,7 +43,10 @@ export default class GemPuzzle {
       if (arr[0] !== 0 && arr[1] !== 0) {
         [arr[0], arr[1]] = [arr[1], arr[0]];
       } else {
-        [arr[arr.length - 1], arr[arr.length - 2]] = [arr[arr.length - 2], arr[arr.length - 1]];
+        [arr[arr.length - 1], arr[arr.length - 2]] = [
+          arr[arr.length - 2],
+          arr[arr.length - 1],
+        ];
       }
     }
     return arr;
@@ -88,7 +90,10 @@ export default class GemPuzzle {
 
   getImageUrl() {
     const randomImage = Math.floor(Math.random() * (150 - 1) + 1);
-    this.field.setAttribute('data-url', `url(assets/images/${randomImage}.jpg)`);
+    this.field.setAttribute(
+      'data-url',
+      `url(assets/images/${randomImage}.jpg)`,
+    );
   }
 
   setImage() {
@@ -96,9 +101,13 @@ export default class GemPuzzle {
     const urlImg = this.field.getAttribute('data-url');
 
     cells.forEach((_, i) => {
-      const background = `${urlImg} ${((+cells[i].innerText - 1) % (Math.sqrt(this.fieldSize)))
-        * (100 / (Math.sqrt(this.fieldSize) - 1))}% ${Math.trunc((+cells[i].innerText - 1) / (Math.sqrt(this.fieldSize)))
-        * (100 / (Math.sqrt(this.fieldSize) - 1))}%`;
+      const background = `${urlImg} ${
+        ((+cells[i].innerText - 1) % Math.sqrt(this.fieldSize)) *
+        (100 / (Math.sqrt(this.fieldSize) - 1))
+      }% ${
+        Math.trunc((+cells[i].innerText - 1) / Math.sqrt(this.fieldSize)) *
+        (100 / (Math.sqrt(this.fieldSize) - 1))
+      }%`;
       if (this.field.getAttribute('data-image') === 'on') {
         cells[i].style.background = background;
         cells[i].style.backgroundSize = '400px';
@@ -112,10 +121,17 @@ export default class GemPuzzle {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell, i) => {
       cell.addEventListener('click', () => {
-        const verticalDiff = Math.abs(this.top.slice(0, -2) - cell.style.top.slice(0, -2));
-        const horizontDiff = Math.abs(this.left.slice(0, -2) - cell.style.left.slice(0, -2));
+        const verticalDiff = Math.abs(
+          this.top.slice(0, -2) - cell.style.top.slice(0, -2),
+        );
+        const horizontDiff = Math.abs(
+          this.left.slice(0, -2) - cell.style.left.slice(0, -2),
+        );
         const cellSize = 400 / Math.sqrt(this.fieldSize);
-        if (Math.trunc(verticalDiff) + Math.trunc(horizontDiff) === Math.trunc(cellSize)) {
+        if (
+          Math.trunc(verticalDiff) + Math.trunc(horizontDiff) ===
+          Math.trunc(cellSize)
+        ) {
           if (this.field.getAttribute('data-sound') === 'on') {
             this.audio.play();
           }
@@ -139,10 +155,18 @@ export default class GemPuzzle {
     const cellSize = 400 / Math.sqrt(this.fieldSize);
     let count = 0;
     cells.forEach((cell) => {
-      if (`${Math.trunc(cell.style.left.slice(0, -2))}px`
-      === `${((+cell.innerText - 1) % Math.sqrt(this.fieldSize)) * Math.trunc(cellSize)}px`
-      && `${Math.trunc(cell.style.top.slice(0, -2))}px`
-      === `${(Math.trunc((+cell.innerText - 1) / Math.sqrt(this.fieldSize))) * Math.trunc(cellSize)}px`) {
+      if (
+        `${Math.trunc(cell.style.left.slice(0, -2))}px` ===
+          `${
+            ((+cell.innerText - 1) % Math.sqrt(this.fieldSize)) *
+            Math.trunc(cellSize)
+          }px` &&
+        `${Math.trunc(cell.style.top.slice(0, -2))}px` ===
+          `${
+            Math.trunc((+cell.innerText - 1) / Math.sqrt(this.fieldSize)) *
+            Math.trunc(cellSize)
+          }px`
+      ) {
         count += 1;
       }
     });
@@ -150,7 +174,11 @@ export default class GemPuzzle {
     if (count === cells.length) {
       this.endOfGame.style.display = 'flex';
       this.buttonSettings.setAttribute('disabled', 'disabled');
-      this.setRecord(this.moveCounter, this.timer.innerText.slice(6), this.fieldSize);
+      this.setRecord(
+        this.moveCounter,
+        this.timer.innerText.slice(6),
+        this.fieldSize,
+      );
       clearInterval(this.timerId);
     }
   }
@@ -161,8 +189,11 @@ export default class GemPuzzle {
       if (!this.field.getAttribute('data-pause')) {
         time += 1;
         this.timer.innerHTML = `Time: 
-        ${Math.trunc(time / 60) < 10 ? `0${Math.trunc(time / 60)}`
-    : Math.trunc(time / 60)}:${time % 60 < 10 ? `0${time % 60}` : time % 60}`;
+        ${
+          Math.trunc(time / 60) < 10
+            ? `0${Math.trunc(time / 60)}`
+            : Math.trunc(time / 60)
+        }:${time % 60 < 10 ? `0${time % 60}` : time % 60}`;
       }
     }, 1000);
   }
